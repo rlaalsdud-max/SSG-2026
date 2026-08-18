@@ -1,0 +1,2248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>신세계리테일랩 - 냉장 간편식 프로모션 현장 운영 체크리스트</title>
+  <!-- Google Fonts Pretendard CDN fallback & Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Brand Primary & Accents */
+      --color-primary: #8a1538;       /* 신세계 딥 버건디 */
+      --color-primary-dark: #630c25;  /* 다크 버건디 */
+      --color-accent-gold: #c5a059;   /* 프리미엄 샴페인 골드 */
+      --color-accent-gold-light: #f4ede2;
+      --color-accent-gold-hover: #b08d46;
+
+      /* Neutral & Surfaces */
+      --color-bg: #f5f6f8;            /* 배경 라이트 그레이 */
+      --color-surface: #ffffff;       /* 화이트 카드 */
+      --color-surface-hover: #fafbfc;
+      --color-border: #e2e8f0;
+      --color-border-dark: #cbd5e1;
+      --color-text-main: #1e293b;
+      --color-text-sub: #64748b;
+      --color-text-muted: #94a3b8;
+
+      /* Risk & Status Colors */
+      --color-risk-high: #e03131;     /* High Risk 레드 */
+      --color-risk-high-bg: #ffe3e3;
+      --color-risk-med: #d97706;      /* Medium Risk 앰버 */
+      --color-risk-med-bg: #fef3c7;
+      --color-risk-low: #059669;      /* Low Risk 초록 */
+      --color-risk-low-bg: #d1fae5;
+
+      --color-success: #16a34a;       /* Complete 그린 */
+      --color-success-bg: #dcfce7;
+      --color-info-bg: #eff6ff;
+      --color-info-border: #bfdbfe;
+
+      /* Shadows & Radius */
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 25px rgba(138, 21, 56, 0.12);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Base Reset & Layout */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* Container */
+    .app-container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header Styling */
+    header {
+      background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #a31c44 100%);
+      color: #ffffff;
+      padding: 24px 0 20px;
+      border-bottom: 4px solid var(--color-accent-gold);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(197, 160, 89, 0.2);
+      border: 1px solid var(--color-accent-gold);
+      color: var(--color-accent-gold-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .doc-number {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .header-title-area h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Action Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-gold {
+      background-color: var(--color-accent-gold);
+      color: #ffffff;
+    }
+    .btn-gold:hover {
+      background-color: var(--color-accent-gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-alert {
+      background-color: #ef4444;
+      color: #ffffff;
+      animation: pulse 2s infinite;
+    }
+    .btn-alert:hover {
+      background-color: #dc2626;
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--color-text-main);
+      border: 1px solid var(--color-border);
+    }
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 0.775rem;
+    }
+
+    /* KPI Summary Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--color-primary);
+    }
+
+    .kpi-card.gold::before { background: var(--color-accent-gold); }
+    .kpi-card.success::before { background: var(--color-success); }
+    .kpi-card.info::before { background: #3b82f6; }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      color: var(--color-text-sub);
+      font-weight: 500;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .kpi-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--color-text-main);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .kpi-sub {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+    }
+
+    /* Realtime D-Day Countdown Badge */
+    .dday-badge {
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Progress Bar */
+    .progress-wrapper {
+      width: 100%;
+      background: #e2e8f0;
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent-gold) 100%);
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+      border-radius: 5px;
+    }
+
+    /* Controls & Filter Bar */
+    .filter-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .filter-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-text-sub);
+      min-width: 60px;
+    }
+
+    .tab-pills {
+      display: inline-flex;
+      background: #f1f5f9;
+      padding: 3px;
+      border-radius: var(--radius-sm);
+      gap: 2px;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-sub);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .pill-btn.active {
+      background: var(--color-surface);
+      color: var(--color-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      flex-grow: 1;
+      max-width: 320px;
+      min-width: 200px;
+    }
+
+    .search-input-wrapper input {
+      width: 100%;
+      padding: 8px 12px 8px 36px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-input-wrapper input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(138, 21, 56, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Main Grid Layout */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 410px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Checklist Section */
+    .checklist-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #ffffff;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border: 1px solid var(--color-border);
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checklist-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: var(--transition);
+    }
+
+    .checklist-card.completed {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .checklist-item-header {
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: start;
+      cursor: pointer;
+    }
+
+    .checklist-item-header:hover {
+      background-color: var(--color-surface-hover);
+    }
+
+    /* Custom Checkbox */
+    .custom-checkbox {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--color-border-dark);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 2px;
+      transition: var(--transition);
+      background: #ffffff;
+    }
+
+    .checklist-card.completed .custom-checkbox {
+      background-color: var(--color-success);
+      border-color: var(--color-success);
+      color: #ffffff;
+    }
+
+    .item-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .item-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .item-title {
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+      line-height: 1.4;
+    }
+
+    .checklist-card.completed .item-title {
+      text-decoration: line-through;
+      color: var(--color-text-sub);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-risk-high { background: var(--color-risk-high-bg); color: var(--color-risk-high); border: 1px solid rgba(224, 49, 49, 0.3); }
+    .badge-risk-medium { background: var(--color-risk-med-bg); color: var(--color-risk-med); border: 1px solid rgba(217, 119, 6, 0.3); }
+    .badge-risk-low { background: var(--color-risk-low-bg); color: var(--color-risk-low); border: 1px solid rgba(5, 150, 105, 0.3); }
+
+    .badge-tag {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid var(--color-border);
+    }
+
+    .badge-store {
+      background: var(--color-accent-gold-light);
+      color: #854d0e;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+    }
+
+    .item-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.775rem;
+      color: var(--color-text-sub);
+    }
+
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .accordion-toggle {
+      background: transparent;
+      border: none;
+      color: var(--color-text-sub);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 4px;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .accordion-toggle:hover {
+      background: #e2e8f0;
+      color: var(--color-text-main);
+    }
+
+    .item-details-panel {
+      padding: 0 20px 16px 58px;
+      display: none;
+      border-top: 1px dashed var(--color-border);
+      margin-top: 8px;
+      padding-top: 12px;
+      background: #fafafa;
+    }
+
+    .item-details-panel.open {
+      display: block;
+    }
+
+    .detail-text {
+      font-size: 0.85rem;
+      color: #475569;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .memo-box {
+      margin-top: 8px;
+    }
+
+    .memo-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .memo-textarea {
+      width: 100%;
+      height: 60px;
+      padding: 8px 10px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.825rem;
+      resize: vertical;
+      outline: none;
+      background: #ffffff;
+    }
+
+    .memo-textarea:focus {
+      border-color: var(--color-primary);
+    }
+
+    /* Toolkits (Right Panel) */
+    .toolkits-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .toolkit-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .toolkit-header {
+      background: #f8fafc;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toolkit-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toolkit-body {
+      padding: 16px;
+    }
+
+    /* Calculator Styling */
+    .preset-buttons {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .preset-btn {
+      padding: 4px 8px;
+      font-size: 0.725rem;
+      background: #f1f5f9;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .preset-btn:hover {
+      background: var(--color-accent-gold-light);
+      border-color: var(--color-accent-gold);
+    }
+
+    .calc-item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-bottom: 16px;
+    }
+
+    .calc-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: #f8fafc;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.825rem;
+    }
+
+    .calc-item-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .calc-item-name {
+      font-weight: 600;
+      color: var(--color-text-main);
+    }
+
+    .calc-item-price {
+      font-size: 0.75rem;
+      color: var(--color-text-sub);
+    }
+
+    .qty-counter {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid var(--color-border);
+      background: #ffffff;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .qty-val {
+      font-weight: 700;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .calc-summary {
+      background: var(--color-accent-gold-light);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .calc-summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.825rem;
+      color: #475569;
+    }
+
+    .calc-summary-row.total {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      border-top: 1px dashed var(--color-accent-gold);
+      padding-top: 6px;
+      margin-top: 4px;
+    }
+
+    .discount-applied-tag {
+      display: inline-block;
+      background: var(--color-primary);
+      color: #ffffff;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    /* Roleplay & CS FAQ */
+    .cs-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 12px;
+    }
+
+    .cs-tab-btn {
+      flex: 1;
+      padding: 8px;
+      text-align: center;
+      background: transparent;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-text-sub);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+
+    .cs-tab-btn.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .cs-card {
+      background: #f8fafc;
+      border-left: 3px solid var(--color-accent-gold);
+      padding: 10px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 10px;
+      font-size: 0.825rem;
+    }
+
+    .cs-title {
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cs-script {
+      color: #334155;
+      line-height: 1.5;
+      font-style: italic;
+      background: #ffffff;
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      margin-top: 4px;
+    }
+
+    /* Budget Tracker */
+    .budget-slider-wrapper {
+      margin-top: 10px;
+    }
+
+    .budget-slider {
+      width: 100%;
+      accent-color: var(--color-primary);
+    }
+
+    .budget-gauge {
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .budget-gauge-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #16a34a 0%, #f59f00 70%, #dc2626 100%);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .alert-box {
+      background: var(--color-risk-high-bg);
+      border: 1px solid rgba(224, 49, 49, 0.4);
+      color: var(--color-risk-high);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.775rem;
+      font-weight: 600;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: var(--radius-lg);
+      border-top-right-radius: var(--radius-lg);
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 1.25rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .rules-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .rule-item {
+      background: #fef2f2;
+      border-left: 4px solid var(--color-risk-high);
+      padding: 12px 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    .rule-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-risk-high);
+      margin-bottom: 4px;
+    }
+
+    .rule-desc {
+      font-size: 0.825rem;
+      color: #475569;
+    }
+
+    .hotline-box {
+      background: var(--color-accent-gold-light);
+      border: 1px solid var(--color-accent-gold);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .hotline-title {
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .hotline-step-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .step-card {
+      background: #ffffff;
+      padding: 8px 4px;
+      border-radius: 6px;
+      border: 1px solid rgba(197, 160, 89, 0.5);
+      font-size: 0.725rem;
+      font-weight: 600;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Animation Keyframes */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+      .toolkits-sidebar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+      }
+      .header-actions .btn {
+        flex: 1;
+      }
+      .hotline-step-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .checklist-item-header {
+        grid-template-columns: auto 1fr;
+      }
+      .item-actions {
+        grid-column: span 2;
+        justify-content: flex-end;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+      header {
+        background: none;
+        color: #000000;
+        border-bottom: 2px solid #000000;
+        padding: 0;
+      }
+      .header-actions, .filter-card, .toolkits-sidebar, .btn, .accordion-toggle {
+        display: none !important;
+      }
+      .main-grid {
+        display: block;
+      }
+      .item-details-panel {
+        display: block !important;
+      }
+      .checklist-card {
+        border: 1px solid #ccc;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="app-container">
+      <div class="header-top">
+        <div>
+          <span class="brand-badge">SHINSEGAE RETAIL LAB</span>
+          <span class="doc-number">문서 번호: PRD-MKT-202608-001</span>
+          <div class="header-title-area">
+            <h1>❄️ 냉장 간편식 페스타 (2+ 10% OFF) 현장 운영 체크리스트</h1>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-alert" onclick="openHotlineModal()">
+            🚨 4대 금지사항 & 비상 핫라인
+          </button>
+          <button class="btn btn-gold" onclick="copySummaryReport()">
+            📋 현황 보고서 복사
+          </button>
+          <button class="btn btn-outline" onclick="exportData()">
+            💾 JSON 내보내기
+          </button>
+          <label class="btn btn-outline" style="margin:0; cursor:pointer;">
+            📂 가져오기
+            <input type="file" id="import-file" accept=".json" style="display:none;" onchange="importData(event)">
+          </label>
+          <button class="btn btn-outline" onclick="resetChecklistData()">
+            🔄 초기화
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <!-- KPI & Overview Bar -->
+    <div class="kpi-grid">
+      <div class="kpi-card gold">
+        <div class="kpi-label">
+          <span>프로모션 D-Day</span>
+          <span class="dday-badge" id="dday-tag">D-17</span>
+        </div>
+        <div class="kpi-value" id="countdown-timer">00일 00시간 00분</div>
+        <div class="kpi-sub">행사 기간: 2026.09.04(금) ~ 09.10(목)</div>
+      </div>
+
+      <div class="kpi-card success">
+        <div class="kpi-label">
+          <span>전체 점검 진행률</span>
+          <span id="progress-percent" style="font-weight:700; color:var(--color-success);">0%</span>
+        </div>
+        <div class="kpi-value">
+          <span id="completed-count">0</span> / <span id="total-count">16</span> <span style="font-size:0.9rem; font-weight:normal;">항목</span>
+        </div>
+        <div class="progress-wrapper">
+          <div class="progress-fill" id="main-progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="kpi-card info">
+        <div class="kpi-label">
+          <span>점포 및 대상 상품</span>
+          <span style="font-size:0.75rem; color:#3b82f6; font-weight:700;">3개 점포</span>
+        </div>
+        <div class="kpi-value" style="font-size:1.1rem;">센트럴 / 리버 / 파크</div>
+        <div class="kpi-sub">대상 품목: 냉장 HMR 핵심 6종 (교차 가능)</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">
+          <span>예산 한도 통제</span>
+          <span style="font-size:0.75rem; color:var(--color-primary); font-weight:700;">VAT 포함</span>
+        </div>
+        <div class="kpi-value">8,000,000<span style="font-size:0.9rem;">원</span></div>
+        <div class="kpi-sub">할인 보전금 한도 (목표 판매량 6,000개)</div>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-card">
+      <div class="filter-group">
+        <span class="filter-label">점포 선택:</span>
+        <div class="tab-pills" id="store-pills">
+          <button class="pill-btn active" data-store="all" onclick="setFilter('activeStore', 'all')">전체 점포</button>
+          <button class="pill-btn" data-store="central" onclick="setFilter('activeStore', 'central')">센트럴점</button>
+          <button class="pill-btn" data-store="river" onclick="setFilter('activeStore', 'river')">리버점</button>
+          <button class="pill-btn" data-store="park" onclick="setFilter('activeStore', 'park')">파크점</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">카테고리:</span>
+        <div class="tab-pills" id="category-pills">
+          <button class="pill-btn active" data-cat="all" onclick="setFilter('activeCategory', 'all')">전체</button>
+          <button class="pill-btn" data-cat="store" onclick="setFilter('activeCategory', 'store')">점포/진열</button>
+          <button class="pill-btn" data-cat="scm" onclick="setFilter('activeCategory', 'scm')">SCM/물류</button>
+          <button class="pill-btn" data-cat="it" onclick="setFilter('activeCategory', 'it')">POS/IT</button>
+          <button class="pill-btn" data-cat="cs" onclick="setFilter('activeCategory', 'cs')">CS/교육</button>
+          <button class="pill-btn" data-cat="budget" onclick="setFilter('activeCategory', 'budget')">예산/대응</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">상태:</span>
+        <div class="tab-pills" id="status-pills">
+          <button class="pill-btn active" data-status="all" onclick="setFilter('activeStatus', 'all')">전체</button>
+          <button class="pill-btn" data-status="uncompleted" onclick="setFilter('activeStatus', 'uncompleted')">미완료</button>
+          <button class="pill-btn" data-status="completed" onclick="setFilter('activeStatus', 'completed')">완료</button>
+          <button class="pill-btn" data-status="high-risk" onclick="setFilter('activeStatus', 'high-risk')">🔴 고위험</button>
+        </div>
+      </div>
+
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="체크 항목, 부서, 상세 내용 검색..." oninput="handleSearch(this.value)">
+      </div>
+    </div>
+
+    <!-- Main Layout (Checklist + Toolkits) -->
+    <div class="main-grid">
+
+      <!-- Left Column: Checklist Engine -->
+      <div class="checklist-container">
+        <div class="section-header">
+          <div class="section-title">
+            <span>📌 실행 점검 리스트</span>
+            <span style="font-size:0.8rem; font-weight:normal; color:var(--color-text-sub);" id="view-count-info">(16개 항목 표시 중)</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="openCustomItemModal()">+ 커스텀 항목 추가</button>
+        </div>
+
+        <div id="checklist-render-area">
+          <!-- Dynamic rendering from JS -->
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Field Toolkits -->
+      <div class="toolkits-sidebar">
+
+        <!-- Toolkit 1: Bundle Discount Simulator -->
+        <div class="toolkit-card">
+          <div class="toolkit-header">
+            <div class="toolkit-title">
+              <span>🧮 POS 번들 할인 시뮬레이터</span>
+            </div>
+            <span style="font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-weight:700;">2+ 10% 검증</span>
+          </div>
+          <div class="toolkit-body">
+            <div class="preset-buttons">
+              <button class="preset-btn" onclick="applyCalcPreset('single')">단품 1개 (할인불가)</button>
+              <button class="preset-btn" onclick="applyCalcPreset('pair')">동일 2개 (10% OFF)</button>
+              <button class="preset-btn" onclick="applyCalcPreset('cross')">교차 3개 (10% OFF)</button>
+              <button class="preset-btn" onclick="applyCalcPreset('mixed')">대상1+비대상1</button>
+            </div>
+
+            <div class="calc-item-list" id="calc-product-list">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div class="calc-summary">
+              <div class="calc-summary-row">
+                <span>총 선택 수량</span>
+                <span id="calc-total-qty">0개</span>
+              </div>
+              <div class="calc-summary-row">
+                <span>정상 판매가 합계</span>
+                <span id="calc-original-total">0원</span>
+              </div>
+              <div class="calc-summary-row" style="color:var(--color-primary); font-weight:700;">
+                <span>프로모션 할인액 (10%) <span id="calc-badge-area"></span></span>
+                <span id="calc-discount-amount">-0원</span>
+              </div>
+              <div class="calc-summary-row total">
+                <span>최종 결제 예상금액</span>
+                <span id="calc-final-total">0원</span>
+              </div>
+              <div class="calc-summary-row" style="margin-top:4px; font-size:0.75rem; color:#64748b;">
+                <span>신세계포인트 예상적립(0.1%)</span>
+                <span id="calc-point-est">0 P</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toolkit 2: CS Roleplay & FAQ Quick Viewer -->
+        <div class="toolkit-card">
+          <div class="toolkit-header">
+            <div class="toolkit-title">
+              <span>💬 CS 롤플레잉 & FAQ 퀵 뷰어</span>
+            </div>
+          </div>
+          <div class="toolkit-body" style="padding-top:8px;">
+            <div class="cs-tabs">
+              <button class="cs-tab-btn active" id="cs-tab-rp" onclick="switchCsTab('rp')">응대 롤플레잉</button>
+              <button class="cs-tab-btn" id="cs-tab-faq" onclick="switchCsTab('faq')">자주 묻는 질문 FAQ</button>
+            </div>
+
+            <div id="cs-content-rp">
+              <div class="cs-card">
+                <div class="cs-title">💬 상황 1: 1개만 사며 할인 적용 요구 시</div>
+                <div style="font-size:0.75rem; color:#64748b;">고객: "하나만 사도 10% 할인해주면 안 돼요?"</div>
+                <div class="cs-script">
+                  "고객님, 본 행사는 냉장 간편식 6종 중 <b>2개 이상 구매 시 10% 할인</b>이 자동 적용되는 행사입니다. 다른 인기 품목과 교차 구매하셔도 할인이 적용되오니 1개 더 선택해보시는 것을 추천해 드립니다!"
+                </div>
+              </div>
+
+              <div class="cs-card" style="border-left-color:var(--color-primary);">
+                <div class="cs-title">💬 상황 2: 특정 핵심 품목 일시 결품 시</div>
+                <div style="font-size:0.75rem; color:#64748b;">고객: "바베큐 풀드포크가 왜 없나요?"</div>
+                <div class="cs-script">
+                  "고객님, 찾으시는 상품이 인기가 높아 일시 소진되었습니다. 정성을 다해 추가 입고 준비 중입니다. 동일한 행사 대상인 <b>'통삼겹 김치찜'</b>이나 <b>'라자냐'</b>도 훌륭한 만족도를 드리고 있으니 추천해 드려도 될까요?"
+                </div>
+              </div>
+            </div>
+
+            <div id="cs-content-faq" style="display:none;">
+              <div class="cs-card">
+                <div class="cs-title">Q. 6종 중 서로 다른 상품을 1개씩 사도 되나요?</div>
+                <div class="rule-desc">네, 행사 대상 6종 내에서는 어떤 조합으로 교차 구매하셔도 2개 이상이면 전체 10% 할인이 적용됩니다.</div>
+              </div>
+              <div class="cs-card">
+                <div class="cs-title">Q. 3개 이상 구매 시 할인율이 더 올라가나요?</div>
+                <div class="rule-desc">할인율은 동일하게 10% 적용됩니다. (2개 구매 시 10%, 3개 구매 시 3개 전체 10% 할인)</div>
+              </div>
+              <div class="cs-card">
+                <div class="cs-title">Q. 통신사 할인이나 카드 추가 할인이 중복되나요?</div>
+                <div class="rule-desc">행사 10% 할인이 우선 적용된 결제 금액을 기준으로 제휴 통신사 및 신세계포인트 적립이 가능합니다.</div>
+              </div>
+              <div class="cs-card">
+                <div class="cs-title">Q. 구매 후 1개만 부분 반품 시 어떻게 되나요?</div>
+                <div class="rule-desc">2개 구매 후 1개 반품 시 수량 조건(2개 이상) 미충족으로 할인 혜택이 취소되며, 잔여 1개는 정상가 처리됩니다.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toolkit 3: Budget Consumption Tracker -->
+        <div class="toolkit-card">
+          <div class="toolkit-header">
+            <div class="toolkit-title">
+              <span>📊 예산 소진 트래커 시뮬레이터</span>
+            </div>
+          </div>
+          <div class="toolkit-body">
+            <div style="font-size:0.8rem; color:var(--color-text-sub);">
+              예상 판매 수량에 따른 본사 할인 보전금 소진 현황 시뮬레이션
+            </div>
+
+            <div class="budget-slider-wrapper">
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:700; margin-bottom:4px;">
+                <span>예상 판매 수량</span>
+                <span id="slider-qty-text" style="color:var(--color-primary);">4,500 개</span>
+              </div>
+              <input type="range" min="0" max="9000" step="100" value="4500" class="budget-slider" id="budget-range" oninput="updateBudgetSim(this.value)">
+            </div>
+
+            <div class="budget-gauge">
+              <div class="budget-gauge-fill" id="budget-gauge-bar" style="width: 53.4%;"></div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
+              <span>예상 보전금 소진액: <b id="budget-used-text">4,275,000원</b></span>
+              <span>소진율: <b id="budget-rate-text">53.4%</b></span>
+            </div>
+
+            <div class="alert-box" id="budget-alert-1">
+              ⚠️ 1차 경고선 도달 (소진율 50% / 450만원 초과): 일일 소진 속도 및 점포별 잔여 재고 추이 본사 보고 필요
+            </div>
+            <div class="alert-box" id="budget-alert-2" style="background:#fef2f2; border-color:#ef4444;">
+              🚨 비상! 총 예산 한도(800만원 / 8,400개) 도달 임박: 즉시 프로모션 조기 종료 프로토콜 준비
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Modal 1: 4대 금지사항 & 핫라인 모달 -->
+  <div class="modal-overlay" id="hotline-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>🚨 현장 준수 4대 금지사항 & 긴급 핫라인</span>
+        </div>
+        <button class="modal-close" onclick="closeHotlineModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="font-weight:700; color:var(--color-primary-dark); margin-bottom:12px; font-size:0.95rem;">
+          ⛔ 무결점 현장 운영을 위한 필수 컴플라이언스 (전 직원 서약 대상)
+        </div>
+
+        <div class="rules-list">
+          <div class="rule-item">
+            <div class="rule-title">1. POS 가격 및 할인율 임의 수기 변경 금지</div>
+            <div class="rule-desc">시스템 승인 없이 개별 계산대에서 가격을 수기로 수정하거나 가맹점 임의 할인을 적용하는 행위 절대 불가.</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-title">2. 고객 임의 보상 및 비공식 사은품 증정 약속 금지</div>
+            <div class="rule-desc">품절 또는 불만 고객 발생 시 현장 매니저의 임의 상품 증정 금지. 규정된 CS 매뉴얼 절차 준수.</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-title">3. 승인되지 않은 외부 메일/자동 스크립트 발송 금지</div>
+            <div class="rule-desc">행사 실적 데이터를 외부 계정으로 자동 전송하거나 개인 메일로 백업하는 행위 보안 위반 처리.</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-title">4. POS 로그 및 행사 기획 데이터 임의 삭제 금지</div>
+            <div class="rule-desc">트래블슈팅 및 예산 정산을 위해 모든 POS 거래 로그 및 변경 이력은 최소 3년간 자동 보존 조치.</div>
+          </div>
+        </div>
+
+        <div class="hotline-box">
+          <div class="hotline-title">📞 긴급 비상 연락망 (Hotline)</div>
+          <div style="font-size:0.825rem; color:#334155;">
+            • <b>마케팅팀 비상 상황실</b>: 02-2222-8801 / 010-9876-5432 (24시간)<br>
+            • <b>IT/POS 장애 대응팀</b>: 02-2222-8805<br>
+            • <b>콜드체인 물류 수송팀</b>: 02-2222-8810
+          </div>
+
+          <div style="margin-top:12px; font-weight:700; font-size:0.8rem; color:var(--color-primary);">
+            📢 긴급 상황 보고 4단계 흐름
+          </div>
+          <div class="hotline-step-grid">
+            <div class="step-card">1. 현장 상황 파악<br>(1분 이내)</div>
+            <div class="step-card">2. 점장/책임자 보고<br>(3분 이내)</div>
+            <div class="step-card">3. 본사 핫라인 접수<br>(10분 이내)</div>
+            <div class="step-card">4. 긴급 지침 이행<br>(즉시 대응)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Custom Item Addition -->
+  <div class="modal-overlay" id="custom-item-modal">
+    <div class="modal-content" style="max-width:500px;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>➕ 신규 점검 항목 추가</span>
+        </div>
+        <button class="modal-close" onclick="closeCustomItemModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="custom-item-form" onsubmit="saveCustomItem(event)">
+          <div style="margin-bottom:12px;">
+            <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px;">카테고리</label>
+            <select id="new-cat" style="width:100%; padding:8px; border:1px solid var(--color-border); border-radius:4px;" required>
+              <option value="store">점포 운영 및 진열 환경</option>
+              <option value="scm">SCM 및 콜드체인 물류</option>
+              <option value="it">POS 시스템 및 결제 로직</option>
+              <option value="cs">현장 CS 교육 및 컴플라이언스</option>
+              <option value="budget">예산 통제 및 비상 대응</option>
+            </select>
+          </div>
+          <div style="margin-bottom:12px;">
+            <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px;">점검 항목 제목</label>
+            <input type="text" id="new-title" style="width:100%; padding:8px; border:1px solid var(--color-border); border-radius:4px;" placeholder="예: 행사 매대 전용 이동형 냉장고 추가 설치" required>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+            <div>
+              <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px;">위험도</label>
+              <select id="new-risk" style="width:100%; padding:8px; border:1px solid var(--color-border); border-radius:4px;">
+                <option value="high">🔴 High Risk</option>
+                <option value="medium" selected>🟡 Medium Risk</option>
+                <option value="low">🟢 Normal</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px;">적용 점포</label>
+              <select id="new-store" style="width:100%; padding:8px; border:1px solid var(--color-border); border-radius:4px;">
+                <option value="all">전체 점포</option>
+                <option value="central">센트럴점</option>
+                <option value="river">리버점</option>
+                <option value="park">파크점</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+            <div>
+              <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px;">담당 부서</label>
+              <input type="text" id="new-dept" style="width:100%; padding:8px; border:1px solid var(--color-border); border-radius:4px;" placeholder="예: 점포운영팀">
+            </div>
+            <div>
+              <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px;">마감일</label>
+              <input type="date" id="new-deadline" value="2026-09-03" style="width:100%; padding:8px; border:1px solid var(--color-border); border-radius:4px;">
+            </div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px;">세부 가이드 / 설명</label>
+            <textarea id="new-details" style="width:100%; height:60px; padding:8px; border:1px solid var(--color-border); border-radius:4px;" placeholder="세부 실행 내용 작성..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;">항목 등록 완료</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast" id="toast-message">알림 메시지</div>
+
+  <!-- Application Logic -->
+  <script>
+    // Storage Key
+    const STORAGE_KEY = 'shinsegae_hmr_checklist_2026';
+
+    // Seed Products
+    const HMR_PRODUCTS = [
+      { id: "HMR-101", name: "시그니처 바베큐 풀드포크 플래터", spec: "450g", price: 12800, discountPrice: 11520 },
+      { id: "HMR-102", name: "트러플 크림 파스타 밀키트", spec: "380g", price: 9900, discountPrice: 8910 },
+      { id: "HMR-103", name: "통삼겹 김치찜", spec: "500g", price: 11500, discountPrice: 10350 },
+      { id: "HMR-104", name: "갈릭 버터 쉬림프 샐러드볼", spec: "320g", price: 8900, discountPrice: 8010 },
+      { id: "HMR-105", name: "한우 우거지 소고기국밥", spec: "550g", price: 10500, discountPrice: 9450 },
+      { id: "HMR-106", name: "리치 치즈 라자냐", spec: "400g", price: 9500, discountPrice: 8550 }
+    ];
+
+    // Seed Initial Checklist
+    const INITIAL_CHECKLIST = [
+      {
+        id: "chk-store-01",
+        category: "store",
+        categoryName: "점포 운영 및 진열 환경",
+        title: "점포별 매대 실측 및 진열 도면(Planogram) 확정",
+        risk: "high",
+        deadline: "2026-08-25",
+        department: "점포운영팀",
+        store: "all",
+        details: "센트럴점(메인 오픈 쇼케이스 3단+엔드캡), 리버점(HMR 전용존+온도계), 파크점(신선 평대 냉기 통로 확보)",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-store-02",
+        category: "store",
+        categoryName: "점포 운영 및 진열 환경",
+        title: "POP/가격표 시인성 및 2+ 10% 표기 설치 점검",
+        risk: "medium",
+        deadline: "2026-08-30",
+        department: "VMD팀",
+        store: "all",
+        details: "정상가 및 2개 이상 구매 시 10% 할인가 동시 표기, 와블러/바닥 스티커 시공",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-store-03",
+        category: "store",
+        categoryName: "점포 운영 및 진열 환경",
+        title: "피크타임 보충 전담 인력 근무표 편성 완료",
+        risk: "medium",
+        deadline: "2026-08-28",
+        department: "점포관리팀",
+        store: "all",
+        details: "점심(11:30~13:30) 및 퇴근(17:30~20:00) 피크타임 전담 보충 파트타이머 1~2인 배정",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-scm-01",
+        category: "scm",
+        categoryName: "SCM 및 콜드체인 물류",
+        title: "협력사별 일일 최대 생산/공급 캐파(CAPA 200%) 확약서 접수",
+        risk: "high",
+        deadline: "2026-08-22",
+        department: "SCM/구매팀",
+        store: "all",
+        details: "6종 품목 평시 대비 180~200% 물량 공급 보증 및 D-3 입고 일정 조율",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-scm-02",
+        category: "scm",
+        categoryName: "SCM 및 콜드체인 물류",
+        title: "입고 잔여 유통기한 기준(소비기한 70% 이상) 통제 확립",
+        risk: "high",
+        deadline: "2026-08-26",
+        department: "SCM/구매팀",
+        store: "all",
+        details: "냉장 신선도 유지를 위해 잔여 유통기한 70% 미만 상품 물류센터 입고 즉시 반송 조치",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-scm-03",
+        category: "scm",
+        categoryName: "SCM 및 콜드체인 물류",
+        title: "점간 긴급 이동(센트럴→리버/파크) 콜드체인(0~4℃) 프로토콜 수립",
+        risk: "high",
+        deadline: "2026-08-26",
+        department: "물류팀",
+        store: "all",
+        details: "센트럴 거점 안전재고 분산 및 긴급 보냉 차량 배차 퀵 서비스 계약 완료",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-scm-04",
+        category: "scm",
+        categoryName: "SCM 및 콜드체인 물류",
+        title: "센트럴점 후방 백룸 안전재고(20%) 전용 냉장 공간 확보",
+        risk: "medium",
+        deadline: "2026-08-29",
+        department: "센트럴점",
+        store: "central",
+        details: "센트럴점 백룸 내 HMR 6종 전용 팔레트 및 콜드체인 유지 공간 사전 구획",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-it-01",
+        category: "it",
+        categoryName: "POS 시스템 및 결제 로직",
+        title: "POS 번들 할인(교차 2개 이상 10%) 사전 테스트베드 검증",
+        risk: "high",
+        deadline: "2026-08-27",
+        department: "IT운영팀",
+        store: "all",
+        details: "행사코드 PR20260904_HMR 등록, 교차 2/3/5개 구매 시 10% 자동 할인 검증",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-it-02",
+        category: "it",
+        categoryName: "POS 시스템 및 결제 로직",
+        title: "신세계포인트 적립 및 통신사/제휴할인 복합 결제 정상 처리 검수",
+        risk: "medium",
+        deadline: "2026-08-27",
+        department: "IT운영팀",
+        store: "all",
+        details: "10% 할인 적용 후 최종 결제금액 기준 포인트 적립 및 카드 할인 중복 순서 확인",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-it-03",
+        category: "it",
+        categoryName: "POS 시스템 및 결제 로직",
+        title: "영수증 상 프로모션명 및 개별 할인액 표기 포맷 검수",
+        risk: "medium",
+        deadline: "2026-08-28",
+        department: "IT운영팀",
+        store: "all",
+        details: "영수증에 [행사] 냉장간편식 2+ 10% 및 차감 내역 명확 표기 확인",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-it-04",
+        category: "it",
+        categoryName: "POS 시스템 및 결제 로직",
+        title: "부분 환불/취소 시 POS 자동 재계산 및 수기 입력 차단 검증",
+        risk: "high",
+        deadline: "2026-08-29",
+        department: "IT운영팀",
+        store: "all",
+        details: "2개 구매 후 1개 환불 시 잔여 1개 정상가 환원 처리 및 수기 가격 수정 원천 차단",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-cs-01",
+        category: "cs",
+        categoryName: "현장 CS 교육 및 컴플라이언스",
+        title: "현장 근무자 100% 고객 응대 롤플레잉 교육 이수",
+        risk: "high",
+        deadline: "2026-09-02",
+        department: "점포관리팀",
+        store: "all",
+        details: "단품 할인 불가 안내 멘트 및 조기 품절 시 대체 상품 정중 안내 멘트 숙지",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-cs-02",
+        category: "cs",
+        categoryName: "현장 CS 교육 및 컴플라이언스",
+        title: "🚨 필수 준수 4대 금지 사항 전 직원 서약 완료",
+        risk: "high",
+        deadline: "2026-09-02",
+        department: "점포관리팀",
+        store: "all",
+        details: "① 가격 임의변경 금지 ② 고객 임의보상 약속 금지 ③ 외부메일 자동발송 금지 ④ 로그/데이터 삭제 금지",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-cs-03",
+        category: "cs",
+        categoryName: "현장 CS 교육 및 컴플라이언스",
+        title: "계산대 및 매대 전면 '교차 구매 안내' & '품절 안내' 배너 비치",
+        risk: "medium",
+        deadline: "2026-09-03",
+        department: "VMD/점포관리팀",
+        store: "all",
+        details: "고객 혼선 방지를 위한 공식 안내문 계산대 및 행사 매대 전면 부착",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-budget-01",
+        category: "budget",
+        categoryName: "예산 통제 및 비상 대응 체계",
+        title: "일일 할인 보전금 소진율 모니터링 알림선(450만원/80%) 설정",
+        risk: "medium",
+        deadline: "2026-09-01",
+        department: "마케팅/재무팀",
+        store: "all",
+        details: "예상 판매 6,000개 초과 시 할인 보전금 570만원 및 총 예산 800만원 초과 방지선 가동",
+        completed: false,
+        memo: ""
+      },
+      {
+        id: "chk-budget-02",
+        category: "budget",
+        categoryName: "예산 통제 및 비상 대응 체계",
+        title: "본사 마케팅팀 긴급 핫라인(10분 이내 보고) 가동 준비",
+        risk: "high",
+        deadline: "2026-09-02",
+        department: "마케팅팀",
+        store: "all",
+        details: "현장 결품/POS 오류 발생 시 점포 책임자 1차 대응 후 유선 핫라인 즉시 가동",
+        completed: false,
+        memo: ""
+      }
+    ];
+
+    // Global State
+    let state = {
+      checklist: [],
+      activeStore: 'all',
+      activeCategory: 'all',
+      activeStatus: 'all',
+      searchQuery: '',
+      cart: {
+        "HMR-101": 0,
+        "HMR-102": 0,
+        "HMR-103": 0,
+        "HMR-104": 0,
+        "HMR-105": 0,
+        "HMR-106": 0
+      }
+    };
+
+    // Initialize App
+    window.onload = function() {
+      loadData();
+      initCountdown();
+      renderCalculatorProducts();
+      renderAll();
+      updateBudgetSim(4500);
+    };
+
+    // Load from LocalStorage
+    function loadData() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          state.checklist = JSON.parse(saved);
+        } catch(e) {
+          state.checklist = [...INITIAL_CHECKLIST];
+        }
+      } else {
+        state.checklist = [...INITIAL_CHECKLIST];
+      }
+    }
+
+    // Save to LocalStorage
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.checklist));
+      renderHeaderProgress();
+    }
+
+    // Render All
+    function renderAll() {
+      renderHeaderProgress();
+      renderChecklist();
+      calculateBundle();
+    }
+
+    // D-Day Countdown Timer
+    function initCountdown() {
+      const targetDate = new Date('2026-09-04T00:00:00+09:00').getTime();
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        const ddayTag = document.getElementById('dday-tag');
+        const timerEl = document.getElementById('countdown-timer');
+
+        if (diff <= 0) {
+          const daysPassed = Math.floor(Math.abs(diff) / (1000 * 60 * 60 * 24)) + 1;
+          ddayTag.innerText = `D+${daysPassed}일 차`;
+          ddayTag.style.background = '#16a34a';
+          timerEl.innerText = '행사 진행 중';
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        ddayTag.innerText = `D-${days}`;
+        timerEl.innerText = `${days}일 ${String(hours).padStart(2, '0')}시간 ${String(minutes).padStart(2, '0')}분`;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 60000);
+    }
+
+    // Header Progress Bar Update
+    function renderHeaderProgress() {
+      const total = state.checklist.length;
+      const completed = state.checklist.filter(item => item.completed).length;
+      const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+      document.getElementById('total-count').innerText = total;
+      document.getElementById('completed-count').innerText = completed;
+      document.getElementById('progress-percent').innerText = `${percent}%`;
+      document.getElementById('main-progress-bar').style.width = `${percent}%`;
+    }
+
+    // Filter Handlers
+    function setFilter(type, val) {
+      state[type] = val;
+
+      // Update Pill UI
+      const pillMap = {
+        activeStore: { container: 'store-pills', attr: 'data-store' },
+        activeCategory: { container: 'category-pills', attr: 'data-cat' },
+        activeStatus: { container: 'status-pills', attr: 'data-status' }
+      };
+
+      const target = pillMap[type];
+      if (target) {
+        const btns = document.querySelectorAll(`#${target.container} .pill-btn`);
+        btns.forEach(b => {
+          if (b.getAttribute(target.attr) === val) {
+            b.classList.add('active');
+          } else {
+            b.classList.remove('active');
+          }
+        });
+      }
+
+      renderChecklist();
+    }
+
+    function handleSearch(val) {
+      state.searchQuery = val.trim().toLowerCase();
+      renderChecklist();
+    }
+
+    // Render Checklist Items
+    function renderChecklist() {
+      const area = document.getElementById('checklist-render-area');
+      area.innerHTML = '';
+
+      // Filter Logic
+      const filtered = state.checklist.filter(item => {
+        // Store
+        if (state.activeStore !== 'all' && item.store !== 'all' && item.store !== state.activeStore) {
+          return false;
+        }
+        // Category
+        if (state.activeCategory !== 'all' && item.category !== state.activeCategory) {
+          return false;
+        }
+        // Status
+        if (state.activeStatus === 'completed' && !item.completed) return false;
+        if (state.activeStatus === 'uncompleted' && item.completed) return false;
+        if (state.activeStatus === 'high-risk' && item.risk !== 'high') return false;
+
+        // Search Query
+        if (state.searchQuery) {
+          const text = (item.title + item.details + item.department + item.categoryName + item.memo).toLowerCase();
+          if (!text.includes(state.searchQuery)) return false;
+        }
+
+        return true;
+      });
+
+      document.getElementById('view-count-info').innerText = `(${filtered.length}개 항목 표시 중 / 총 ${state.checklist.length}개)`;
+
+      if (filtered.length === 0) {
+        area.innerHTML = `
+          <div style="text-align:center; padding:40px 20px; background:#fff; border-radius:10px; border:1px solid #e2e8f0; color:#64748b;">
+            <div style="font-size:2rem; margin-bottom:8px;">🔍</div>
+            <b>조건에 부합하는 점검 항목이 없습니다.</b>
+            <div style="font-size:0.8rem; margin-top:4px;">필터 조건을 변경하거나 검색어를 재확인해 주세요.</div>
+          </div>
+        `;
+        return;
+      }
+
+      // Group by Category
+      const categories = [
+        { id: 'store', name: '1. 점포 운영 및 진열 환경 점검' },
+        { id: 'scm', name: '2. SCM 및 콜드체인 물류 점검' },
+        { id: 'it', name: '3. POS 시스템 & 결제 로직 점검' },
+        { id: 'cs', name: '4. 현장 CS 교육 및 컴플라이언스' },
+        { id: 'budget', name: '5. 예산 통제 및 비상 대응 체계' }
+      ];
+
+      categories.forEach(cat => {
+        const catItems = filtered.filter(i => i.category === cat.id);
+        if (catItems.length === 0) return;
+
+        const catSection = document.createElement('div');
+        catSection.style.marginBottom = '20px';
+
+        const catTitle = document.createElement('div');
+        catTitle.style.cssText = 'font-size:0.9rem; font-weight:700; color:var(--color-primary); margin-bottom:10px; display:flex; align-items:center; gap:6px;';
+        catTitle.innerHTML = `<span>${cat.name}</span> <span class="badge badge-tag">${catItems.length}</span>`;
+        catSection.appendChild(catTitle);
+
+        catItems.forEach(item => {
+          const card = document.createElement('div');
+          card.className = `checklist-card ${item.completed ? 'completed' : ''}`;
+          card.id = `card-${item.id}`;
+
+          const riskBadge = item.risk === 'high' 
+            ? '<span class="badge badge-risk-high">High Risk 🔴</span>'
+            : item.risk === 'medium'
+            ? '<span class="badge badge-risk-medium">Medium 🟡</span>'
+            : '<span class="badge badge-risk-low">Normal 🟢</span>';
+
+          const storeMap = { all: '전점 공통', central: '센트럴점', river: '리버점', park: '파크점' };
+          const storeTag = `<span class="badge badge-store">${storeMap[item.store] || '전점'}</span>`;
+
+          card.innerHTML = `
+            <div class="checklist-item-header" onclick="toggleItemDetails('${item.id}', event)">
+              <div class="custom-checkbox" onclick="toggleCheck('${item.id}', event)">
+                ${item.completed ? '✓' : ''}
+              </div>
+              <div class="item-body">
+                <div class="item-title-row">
+                  ${riskBadge}
+                  ${storeTag}
+                  <span class="item-title">${escapeHtml(item.title)}</span>
+                </div>
+                <div class="item-meta">
+                  <span>🏢 ${escapeHtml(item.department)}</span>
+                  <span>📅 마감일: D-Day (${item.deadline})</span>
+                </div>
+              </div>
+              <div class="item-actions">
+                <button class="accordion-toggle" id="toggle-btn-${item.id}">▼ 상세</button>
+              </div>
+            </div>
+            <div class="item-details-panel" id="details-${item.id}">
+              <div class="detail-text">💡 <b>실행 가이드 및 세부 가이드:</b><br>${escapeHtml(item.details || '등록된 세부 지침이 없습니다.')}</div>
+              <div class="memo-box">
+                <div class="memo-label">📝 점포 특이사항 및 현장 메모 (자동 저장)</div>
+                <textarea class="memo-textarea" placeholder="현장 실측 결과, 특이사항, 담당자 메모를 기록하세요..." onblur="updateMemo('${item.id}', this.value)">${escapeHtml(item.memo || '')}</textarea>
+              </div>
+            </div>
+          `;
+
+          catSection.appendChild(card);
+        });
+
+        area.appendChild(catSection);
+      });
+    }
+
+    // Toggle Item Details Accordion
+    function toggleItemDetails(id, event) {
+      if (event.target.classList.contains('custom-checkbox') || event.target.tagName === 'TEXTAREA') return;
+
+      const panel = document.getElementById(`details-${id}`);
+      const btn = document.getElementById(`toggle-btn-${id}`);
+
+      if (panel.classList.contains('open')) {
+        panel.classList.remove('open');
+        btn.innerText = '▼ 상세';
+      } else {
+        panel.classList.add('open');
+        btn.innerText = '▲ 접기';
+      }
+    }
+
+    // Toggle Completion State
+    function toggleCheck(id, event) {
+      event.stopPropagation();
+      const item = state.checklist.find(i => i.id === id);
+      if (item) {
+        item.completed = !item.completed;
+        saveData();
+        renderChecklist();
+        showToast(item.completed ? '✅ 항목 점검이 완료되었습니다.' : '↩️ 점검 상태가 미완료로 변경되었습니다.');
+      }
+    }
+
+    // Update Memo
+    function updateMemo(id, val) {
+      const item = state.checklist.find(i => i.id === id);
+      if (item && item.memo !== val) {
+        item.memo = val;
+        saveData();
+        showToast('💾 메모가 자동 저장되었습니다.');
+      }
+    }
+
+    // Toolkit 1: Calculator Render & Logic
+    function renderCalculatorProducts() {
+      const container = document.getElementById('calc-product-list');
+      container.innerHTML = '';
+
+      HMR_PRODUCTS.forEach(p => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'calc-item';
+        itemEl.innerHTML = `
+          <div class="calc-item-info">
+            <span class="calc-item-name">${p.name} (${p.spec})</span>
+            <span class="calc-item-price">${p.price.toLocaleString()}원 → <b style="color:var(--color-primary);">${p.discountPrice.toLocaleString()}원</b> (10%)</span>
+          </div>
+          <div class="qty-counter">
+            <button class="qty-btn" onclick="updateQty('${p.id}', -1)">-</button>
+            <span class="qty-val" id="qty-${p.id}">0</span>
+            <button class="qty-btn" onclick="updateQty('${p.id}', 1)">+</button>
+          </div>
+        `;
+        container.appendChild(itemEl);
+      });
+    }
+
+    function updateQty(id, delta) {
+      const current = state.cart[id] || 0;
+      const next = Math.max(0, current + delta);
+      state.cart[id] = next;
+      document.getElementById(`qty-${id}`).innerText = next;
+      calculateBundle();
+    }
+
+    function applyCalcPreset(preset) {
+      // Reset cart
+      Object.keys(state.cart).forEach(k => state.cart[k] = 0);
+
+      if (preset === 'single') {
+        state.cart['HMR-101'] = 1;
+      } else if (preset === 'pair') {
+        state.cart['HMR-101'] = 2;
+      } else if (preset === 'cross') {
+        state.cart['HMR-101'] = 1;
+        state.cart['HMR-102'] = 1;
+        state.cart['HMR-103'] = 1;
+      } else if (preset === 'mixed') {
+        state.cart['HMR-101'] = 1; // Only 1 target product selected
+      }
+
+      // Sync Qty UI
+      Object.keys(state.cart).forEach(id => {
+        const el = document.getElementById(`qty-${id}`);
+        if (el) el.innerText = state.cart[id];
+      });
+
+      calculateBundle();
+    }
+
+    function calculateBundle() {
+      let totalQty = 0;
+      let totalOriginal = 0;
+
+      HMR_PRODUCTS.forEach(p => {
+        const q = state.cart[p.id] || 0;
+        totalQty += q;
+        totalOriginal += q * p.price;
+      });
+
+      // 2+ Items => 10% Discount
+      const isEligible = totalQty >= 2;
+      const discountAmount = isEligible ? Math.round(totalOriginal * 0.1) : 0;
+      const finalTotal = totalOriginal - discountAmount;
+      const points = Math.floor(finalTotal * 0.001);
+
+      document.getElementById('calc-total-qty').innerText = `${totalQty}개`;
+      document.getElementById('calc-original-total').innerText = `${totalOriginal.toLocaleString()}원`;
+      document.getElementById('calc-discount-amount').innerText = `-${discountAmount.toLocaleString()}원`;
+      document.getElementById('calc-final-total').innerText = `${finalTotal.toLocaleString()}원`;
+      document.getElementById('calc-point-est').innerText = `${points.toLocaleString()} P`;
+
+      const badgeArea = document.getElementById('calc-badge-area');
+      if (isEligible && totalQty > 0) {
+        badgeArea.innerHTML = '<span class="discount-applied-tag">10% 번들할인 적용</span>';
+      } else if (totalQty === 1) {
+        badgeArea.innerHTML = '<span style="font-size:0.7rem; color:#dc2626;">(2개 이상 시 할인 적용)</span>';
+      } else {
+        badgeArea.innerHTML = '';
+      }
+    }
+
+    // Toolkit 2: CS Tab Switching
+    function switchCsTab(tab) {
+      const btnRp = document.getElementById('cs-tab-rp');
+      const btnFaq = document.getElementById('cs-tab-faq');
+      const contentRp = document.getElementById('cs-content-rp');
+      const contentFaq = document.getElementById('cs-content-faq');
+
+      if (tab === 'rp') {
+        btnRp.classList.add('active');
+        btnFaq.classList.remove('active');
+        contentRp.style.display = 'block';
+        contentFaq.style.display = 'none';
+      } else {
+        btnFaq.classList.add('active');
+        btnRp.classList.remove('active');
+        contentRp.style.display = 'none';
+        contentFaq.style.display = 'block';
+      }
+    }
+
+    // Toolkit 3: Budget Simulator
+    function updateBudgetSim(val) {
+      const qty = parseInt(val, 10);
+      document.getElementById('slider-qty-text').innerText = `${qty.toLocaleString()} 개`;
+
+      // Average subsidy = ~950 KRW per unit
+      const used = qty * 950;
+      const totalBudget = 8000000;
+      const rate = Math.min(100, ((used / totalBudget) * 100)).toFixed(1);
+
+      document.getElementById('budget-used-text').innerText = `${used.toLocaleString()}원`;
+      document.getElementById('budget-rate-text').innerText = `${rate}%`;
+      document.getElementById('budget-gauge-bar').style.width = `${rate}%`;
+
+      const alert1 = document.getElementById('budget-alert-1');
+      const alert2 = document.getElementById('budget-alert-2');
+
+      if (used >= 5700000) {
+        alert1.style.display = 'none';
+        alert2.style.display = 'block';
+      } else if (used >= 4500000) {
+        alert1.style.display = 'block';
+        alert2.style.display = 'none';
+      } else {
+        alert1.style.display = 'none';
+        alert2.style.display = 'none';
+      }
+    }
+
+    // Modals Handlers
+    function openHotlineModal() {
+      document.getElementById('hotline-modal').classList.add('active');
+    }
+    function closeHotlineModal() {
+      document.getElementById('hotline-modal').classList.remove('active');
+    }
+
+    function openCustomItemModal() {
+      document.getElementById('custom-item-modal').classList.add('active');
+    }
+    function closeCustomItemModal() {
+      document.getElementById('custom-item-modal').classList.remove('active');
+    }
+
+    function saveCustomItem(e) {
+      e.preventDefault();
+      const newItem = {
+        id: 'chk-custom-' + Date.now(),
+        category: document.getElementById('new-cat').value,
+        categoryName: document.getElementById('new-cat').options[document.getElementById('new-cat').selectedIndex].text,
+        title: document.getElementById('new-title').value,
+        risk: document.getElementById('new-risk').value,
+        store: document.getElementById('new-store').value,
+        department: document.getElementById('new-dept').value || '점포운영팀',
+        deadline: document.getElementById('new-deadline').value,
+        details: document.getElementById('new-details').value,
+        completed: false,
+        memo: ''
+      };
+
+      state.checklist.push(newItem);
+      saveData();
+      renderChecklist();
+      closeCustomItemModal();
+      document.getElementById('custom-item-form').reset();
+      showToast('➕ 커스텀 점검 항목이 등록되었습니다.');
+    }
+
+    // Utility: Copy Summary Report
+    function copySummaryReport() {
+      const completed = state.checklist.filter(i => i.completed);
+      const uncompleted = state.checklist.filter(i => !i.completed);
+      const highRiskUncompleted = uncompleted.filter(i => i.risk === 'high');
+
+      const dateStr = new Date().toLocaleDateString('ko-KR');
+
+      let text = `[신세계리테일랩] 냉장 간편식 페스타 점검 보고서 (${dateStr})\n`;
+      text += `--------------------------------------------------\n`;
+      text += `• 전체 점검 진행률: ${Math.round((completed.length / state.checklist.length) * 100)}% (${completed.length}/${state.checklist.length} 완료)\n`;
+      text += `• 미완료 고위험(High Risk) 항목: ${highRiskUncompleted.length}건\n\n`;
+
+      if (highRiskUncompleted.length > 0) {
+        text += `🔴 [긴급 확인 필요 High-Risk 미완료 목록]\n`;
+        highRiskUncompleted.forEach((item, idx) => {
+          text += `${idx + 1}. [${item.department}] ${item.title} (마감: ${item.deadline})\n`;
+        });
+        text += `\n`;
+      }
+
+      text += `📌 [미완료 항목 요약]\n`;
+      uncompleted.forEach((item, idx) => {
+        text += `- ${item.title} (${item.department})\n`;
+      });
+
+      // Executive Clipboard Copy via execCommand fallback
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('📋 요약 보고서가 클립보드에 복사되었습니다.');
+      } catch (err) {
+        showToast('❌ 복사 중 오류가 발생했습니다.');
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // Utility: Export JSON
+    function exportData() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state.checklist, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `shinsegae_hmr_checklist_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('💾 점검 데이터 파일(JSON)이 다운로드되었습니다.');
+    }
+
+    // Utility: Import JSON
+    function importData(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const imported = JSON.parse(evt.target.result);
+          if (Array.isArray(imported)) {
+            state.checklist = imported;
+            saveData();
+            renderChecklist();
+            showToast('📂 외부 점검 데이터를 성공적으로 불러왔습니다.');
+          }
+        } catch(err) {
+          showToast('❌ 올바르지 않은 JSON 데이터 포맷입니다.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // Reset Data
+    function resetChecklistData() {
+      if (confirm('모든 체크 상태와 메모가 초기화됩니다. 계속하시겠습니까?')) {
+        state.checklist = JSON.parse(JSON.stringify(INITIAL_CHECKLIST));
+        saveData();
+        renderChecklist();
+        showToast('🔄 모든 데이터가 초기 상태로 복원되었습니다.');
+      }
+    }
+
+    // Toast Notification
+    function showToast(msg) {
+      const toast = document.getElementById('toast-message');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Helper: Escape HTML
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "& mygt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
